@@ -1,2 +1,2 @@
-# cinemille-fe
+# CineMille Front-end
 Technical challenge
