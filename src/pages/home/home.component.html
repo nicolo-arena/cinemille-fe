@@ -1,0 +1,71 @@
+<div class="container mx-auto my-10 flex flex-col justify-center gap-10">
+  <h1 class="text-center text-3xl">CineMille</h1>
+  <div class="flex flex-col gap-5">
+    <div
+      *ngFor="let movie of movies$ | async"
+      class="mx-5 p-5 bg-white drop-shadow-lg rounded-lg flex flex-col md:flex-row gap-5"
+    >
+      <div class="flex flex-col flex-1 gap-1">
+        <span class="font-bold text-2xl mb-2">{{ movie.title }}</span>
+        <span
+          >Anno: <span class="field">{{ movie.year }}</span></span
+        >
+        <span
+          >Paese: <span class="field">{{ movie.country }}</span></span
+        >
+        <span
+          >Durata: <span class="field">{{ movie.duration }}min</span></span
+        >
+        <span
+          >Regia:
+          <span class="field">{{ printPeople(movie.directors) }}</span></span
+        >
+        <span
+          >Genere:
+          <span class="field">{{ movie.genres.join(", ") }}</span></span
+        >
+        <span
+          >Data di uscita:
+          <span class="field">{{
+            movie.released | date : "dd/MM/yyyy"
+          }}</span></span
+        >
+        <span
+          >Produzione:
+          <span class="field">{{ movie.studios.join(", ") }}</span></span
+        >
+        <span
+          >Attori:
+          <span class="field">{{ printPeople(movie.actors) }}</span></span
+        >
+      </div>
+      <div class="flex flex-col flex-1 gap-5 justify-center">
+        <div
+          *ngFor="let schedule of movie.movieSchedules"
+          class="flex flex-col"
+        >
+          <span class="font-bold text-xl mb-2"
+            >Programmazione dal
+            {{ schedule.startDate | date : "dd/MM/yyyy" }} al
+            {{ schedule.endDate | date : "dd/MM/yyyy" }}</span
+          >
+          <div class="flex flex-row gap-5">
+            <div
+              *ngFor="let session of schedule.movieSessions"
+              class="rounded-lg bg-white drop-shadow-md border border-gray p-2 flex flex-col gap-1 items-center"
+            >
+              <span
+                >{{ session.room.name }} -
+                {{ session.time.toString().slice(0, 5) }}</span
+              >
+              <span
+                >{{ session.room.imax ? "IMAX -" : "" }}
+                {{ session.room.seats }} posti</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
