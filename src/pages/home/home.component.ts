@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   changeStartDate(value: Date) {
     this.startDate = value;
-    if (this.startDate > this.endDate) {
+    if (this.endDate && this.startDate > this.endDate) {
       this.movies = [];
     } else {
       this.getMovies();
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   changeEndDate(value: Date) {
     this.endDate = value;
-    if (this.startDate > this.endDate) {
+    if (this.endDate && this.startDate > this.endDate) {
       this.movies = [];
     } else {
       this.getMovies();
